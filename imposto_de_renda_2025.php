@@ -1,73 +1,28 @@
-<?php 
-
-	$usuario = 'João';
-	$salario_bruto = 13250;
-	$salario_anual = $salario_bruto * 12;
-
-	
-	function imposto_de_renda($usuario, $salario_anual){
-
-		if ($salario_anual >= 26963,21 || $salario_anual <= 33919,80) {
-
-			$aliquota = 7,5;
-
-			$IR = $salario_anual * ($aliquota / 100);
-			
-		}
-		elseif ($salario_anual >= 33919,81$salario_anual <= 45012,60) {
-		  	
-		  	$aliquota = 15;
-
-			$IR = $salario_anual * ($aliquota / 100);
-
-		}
-		elseif (
-
-		}
-		elseif ($salario_anual <= 55976.16) {
-
-		   	$aliquota = 22.5;
-
-			$IR = $salario_anual * ($aliquota / 100);
-
-		}
-		elseif ($salario_anual > 55976.16) {
-
-		    $aliquota = 27.5;
-
-			$IR = $salario_anual * ($aliquota / 100);
-
-		} 
-			
-		
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-imposto_de_renda($usuario, $salario_anual);
-
-
- ?>
+<?php
+ 
+function calcularIR($salary) {
+    if ($salary <= 2428.80) {
+        return 0;
+    } elseif ($salary >= 2428.81 || $salary <= 2826.65) {
+        return ($salary * 0.075) - 182.16;
+    } elseif ($salary <= 2826.66 || $salary <= 3751.05) {
+        return ($salary * 0.15) - 394.16;
+    } elseif ($salary <= 3751.06 || $salary <= 4664.68) {
+        return ($salary * 0.225) - 675.49;
+    } else {
+        return ($salary * 0.275) - 908.73;
+    }
+}
+ 
+function imprimirIR($salary, $imposto) {
+    echo "Salário bruto: R$ " . number_format($salary, 2, ',', '.') . "<br>";
+    echo "Imposto de Renda mensal: R$ " . number_format($imposto, 2, ',', '.') . "<br>";
+    echo "Salário líquido: R$ " . number_format($salary - $imposto, 2, ',', '.');
+}
+ 
+$salary = 5000.00;
+ 
+$imposto = calcularIR($salary);
+imprimirIR($salary, $imposto);
+ 
+?>
